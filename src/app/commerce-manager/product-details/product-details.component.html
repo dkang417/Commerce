@@ -1,0 +1,42 @@
+<div class="top container">
+  <h2>Product Details</h2>
+  <div class="allproducts">
+    <div *ngIf='errorMessage'>
+      <p>{{errorMessage}}</p>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3>Name: </h3>
+        </div>
+        <div class="col">
+          <h3> {{ product.name | titleize }}</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h3>Qty: </h3>
+        </div>
+        <div class="col">
+          <h3> {{ product.qty}}</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h3>Price: </h3>
+        </div>
+        <div class="col">
+          <h3> {{ product.price}}</h3>
+        </div>
+      </div>
+      <button class="btn btn-secondary">
+        <a [routerLink]="['/']" routerLinkActive="active"> Back </a>
+      </button> |
+      <button class="delete btn btn-danger" (click)="onDelete(product)">Delete</button>
+    </div>
+
+  </div>
+</div>

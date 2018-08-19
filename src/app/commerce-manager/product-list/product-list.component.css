@@ -1,0 +1,25 @@
+.top {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 40px;
+  height: 100%;
+}
+
+.bottom {
+  margin-top: 40px;
+}
+
+.add {
+  margin-top: 20px;
+  background-color: gray;
+  padding: 10px 40px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+.main_buttons{
+  background-color: gray;
+  padding: 10px 20px;
+}
