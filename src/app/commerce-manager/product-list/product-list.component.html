@@ -1,9 +1,9 @@
 <div class="top container">
   <div class="row">
-    <div class="col">
+    <div class="col left">
       <h1>Product List</h1>
     </div>
-    <div class="col">
+    <div class="col right">
       <button class="add">
         <a [routerLink]="['new']" routerLinkActive="active">Add new product </a>
       </button>
@@ -12,34 +12,35 @@
   <div class="bottom container">
     <!-- if no products yet display a message -->
     <h5 *ngIf="products.length <= 0">Try adding a new Product</h5>
-
-    <table class="table table-bordered" *ngIf="products.length > 0">
-      <thead class="table-dark">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{ product?._id }}</td>
-          <td>{{ product?.name | titleize }}</td>
-          <td>{{ product?.qty }}</td>
-          <td>{{ product?.price }}</td>
-          <td>
-            <button class="main_buttons">
-              <a [routerLink]="[product._id,'edit']" routerLinkActive="active"> Edit </a>
-            </button>
-            <button class="main_buttons">
-              <a [routerLink]="[product._id]" routerLinkActive="active">Details</a>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered" *ngIf="products.length > 0">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product?._id }}</td>
+            <td>{{ product?.name | titleize }}</td>
+            <td>{{ product?.qty }}</td>
+            <td>{{ product?.price }}</td>
+            <td>
+              <button class="main_buttons">
+                <a [routerLink]="[product._id,'edit']" routerLinkActive="active"> Edit </a>
+              </button>
+              <button class="main_buttons">
+                <a [routerLink]="[product._id]" routerLinkActive="active">Details</a>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>

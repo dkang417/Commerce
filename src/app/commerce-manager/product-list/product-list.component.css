@@ -13,6 +13,7 @@
   margin-top: 20px;
   background-color: gray;
   padding: 10px 40px;
+  text-align: right;
 }
 
 a {
@@ -22,4 +23,12 @@ a {
 .main_buttons{
   background-color: gray;
   padding: 10px 20px;
+}
+
+.right {
+  text-align: right;
+  margin-right: 20px;
+}
+.left {
+  margin-left: 20px;
 }

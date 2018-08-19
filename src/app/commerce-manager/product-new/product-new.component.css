@@ -4,3 +4,21 @@
   margin: 40px;
   height: 100%;
 }
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+button {
+  margin: 20px;
+  padding: 10px 20px;
+}
+.reset {
+  text-decoration: none;
+  color: white;
+}
+.mid {
+  margin-top: 80px;
+}
+h1 {
+  margin-bottom: 50px;
+}
