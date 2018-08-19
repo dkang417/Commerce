@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../shared/services';
 import { Product } from '../../product';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class ProductUpdateComponent implements OnInit {
     qty: 0,
     price: 0
   };
-
+  registrationErrors: string[] = [];
   sub: Subscription;
 
   constructor(
@@ -68,15 +68,19 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   onUpdate(productToUpdate: Product) {
-    // console.log('updating product', this.id);
-    this.sub = this.productService.updateProduct(productToUpdate._id, productToUpdate)
-      .subscribe(product => {
-        // console.log('update this product', product);
-        // update products
-        this.sub = this.productService.getProducts().subscribe(products => {
-          this.products = products;
-          this.router.navigateByUrl('/products');
-        });
+    event.preventDefault();
+    console.log('updating product', this.id);
+    this.sub = this.productService.updateProduct(productToUpdate._id, productToUpdate).subscribe(product => {
+      console.log('update this product', product);
+      // update products
+      this.sub = this.productService.getProducts().subscribe(products => {
+        this.products = products;
+        this.router.navigateByUrl('/products');
+      });
+    },
+    error => {
+      console.log('this is our error', error);
+      this.registrationErrors = error.error;
       });
   }
 

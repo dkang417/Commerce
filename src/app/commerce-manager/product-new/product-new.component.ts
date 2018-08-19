@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../../shared/services';
@@ -15,7 +15,7 @@ export class ProductNewComponent implements OnInit {
   product = new Product();
   products: Product[] = [];
   sub: Subscription;
-  errorMessage: string;
+  registrationErrors: string[] = [];
 
   constructor(
     private productService: ProductService,
@@ -31,22 +31,20 @@ export class ProductNewComponent implements OnInit {
   onSubmit(event: Event, form: NgForm) {
     event.preventDefault();
     console.log('submitting form', this.product);
-    this.sub = this.productService.createProduct(this.product)
-      .subscribe(
-        product => {
-          console.log('product from api is', product);
-          form.resetForm();
-          // update products list
-          this.sub = this.productService.getProducts().subscribe(products => {
-            this.products = products;
-            this.router.navigateByUrl('/products');
-          },
-            error => {
-              console.log('error', error);
-              this.errorMessage = error.statusText;
-          }
-          );
+    this.sub = this.productService.createProduct(this.product).subscribe(product => {
+      console.log('product from api is', product);
+      form.resetForm();
+      // update products list
+      this.sub = this.productService.getProducts().subscribe(products => {
+        this.products = products;
+        this.router.navigateByUrl('/products');
+      });
+    },
+    error => {
+      console.log('this is our error', error);
+      this.registrationErrors = error.error;
       });
   }
+
 
 }

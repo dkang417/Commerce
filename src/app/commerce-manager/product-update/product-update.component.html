@@ -1,4 +1,10 @@
 <div class="top container">
+  <div *ngIf='registrationErrors.length'>
+    <ul class="alert alert-danger">
+      <li *ngFor='let error of registrationErrors'>{{error}}</li>
+    </ul>
+  </div>
+
   <h2>Update Product</h2>
 
   <p class="red" *ngIf="name.touched && !name.valid"> Product must have a name of at least 3 characters</p>
@@ -29,11 +35,6 @@
           </div>
         </div>
 
-        <!-- <button class="btn btn-secondary" (click)="resetForm(product)">reset</button> -->
-
-        <!-- <button class="btn">
-          <input type="reset" value="Reset">
-        </button> -->
         <div class="center">
           <button class="btn btn-secondary" (click)="reset(productForm)">
             Reset

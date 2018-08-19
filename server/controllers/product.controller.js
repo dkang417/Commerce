@@ -8,6 +8,13 @@ module.exports = {
       .then(products => response.json(products))
       .catch(console.log);
   },
+  // get a single product
+  show(request, response) {
+    Product.findById(request.params.product_id)
+      .then(product => response.json(product))
+      .catch(console.log);
+  },
+
   // create a product
   create(request, response) {
     Product.create(request.body)
@@ -21,17 +28,18 @@ module.exports = {
         console.log('error creating', error);
       });
   },
-  // get a single product
-  show(request, response) {
-    Product.findById(request.params.product_id)
-      .then(product => response.json(product))
-      .catch(console.log);
-  },
   // update a resource
   update(request, response) {
     Product.findByIdAndUpdate(request.params.product_id, request.body, { new: true })
       .then(product => response.json(product))
-      .catch(console.log);
+      .catch(error => {
+        response
+          .status(500)
+          .json(
+            Object.keys(error.errors).map(key => error.errors[key].message)
+        );
+        console.log('error updating', error);
+      });
   },
   // destroy resource
   destroy(request, response) {
