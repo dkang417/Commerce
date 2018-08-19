@@ -34,12 +34,14 @@
         <!-- <button class="btn">
           <input type="reset" value="Reset">
         </button> -->
+        <div class="center">
+          <button class="btn btn-secondary" (click)="reset(productForm)">
+            Reset
+          </button>
 
-        <button>
-          <a [routerLink]="['/products/:id/edit']" routerLinkActive="active">Reset</a>
-        </button>
+          <button class="btn btn-success" [disabled]='!productForm.valid' (click)="onUpdate(product)">update</button>
+        </div>
 
-        <button class="btn btn-success" [disabled]='!productForm.valid' (click)="onUpdate(product)">update</button>
       </form>
     </fieldset>
   </section>

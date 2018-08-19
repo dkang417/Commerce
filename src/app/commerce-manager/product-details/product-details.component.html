@@ -32,10 +32,13 @@
           <h3> {{ product.price}}</h3>
         </div>
       </div>
-      <button class="btn btn-secondary">
-        <a [routerLink]="['/']" routerLinkActive="active"> Back </a>
-      </button> |
-      <button class="delete btn btn-danger" (click)="onDelete(product)">Delete</button>
+      <div class="center">
+        <button class="btn btn-secondary">
+          <a [routerLink]="['/']" routerLinkActive="active"> Back </a>
+        </button>
+        <button class="delete btn btn-danger" (click)="onDelete(product)">Delete</button>
+      </div>
+
     </div>
 
   </div>

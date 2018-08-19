@@ -13,12 +13,15 @@ import { Subscription } from 'rxjs';
 export class ProductUpdateComponent implements OnInit {
 
   products: Product[] = [];
+
   id;
+
   product = {
     name: '',
     qty: 0,
     price: 0
   };
+
   sub: Subscription;
 
   constructor(
@@ -30,41 +33,50 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {
       this.id = params.get('id');
-      console.log(this.id);
+      // console.log(this.id);
       const observer = this.productService.getProduct(this.id);
       observer.subscribe(
         (response) => {
-          console.log('get product', response);
+          // console.log('get product', response);
           this.product = response;
         },
         (Error) => {
           console.log('error', Error);
         });
     });
+
     this.sub = this.productService.getProducts().subscribe(products => {
       this.products = products;
     });
   }
-  // onClick(event: Event) {
-  //   event.stopPropagation();
-  //   console.log('stop prop', event);
-  // }
 
-  // reset form ? ?
 
+  // reset form
+  reset(productForm) {
+    this.activeRoute.paramMap.subscribe(params => {
+      this.id = params.get('id');
+      const observer = this.productService.getProduct(this.id);
+      observer.subscribe(
+        (response) => {
+          this.product = response;
+        },
+        (Error) => {
+          console.log('error', Error);
+        });
+    });
+    productForm.reset( { name: this.product.name, qty: this.product.qty, price: this.product.price });
+  }
 
   onUpdate(productToUpdate: Product) {
-    console.log('updating product', this.id);
+    // console.log('updating product', this.id);
     this.sub = this.productService.updateProduct(productToUpdate._id, productToUpdate)
       .subscribe(product => {
-        console.log('update this product', product);
+        // console.log('update this product', product);
         // update products
         this.sub = this.productService.getProducts().subscribe(products => {
           this.products = products;
           this.router.navigateByUrl('/products');
         });
-
-
       });
   }
 
