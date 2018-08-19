@@ -1,7 +1,7 @@
 <div class="top container">
   <div *ngIf='registrationErrors.length'>
     <ul class="alert alert-danger">
-      <li *ngFor='let error of registrationErrors'>{{error}}</li>
+      <li>Product must have a qty and price that is equal to or greater than 0</li>
     </ul>
   </div>
 

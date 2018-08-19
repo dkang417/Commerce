@@ -30,7 +30,7 @@ module.exports = {
   },
   // update a resource
   update(request, response) {
-    Product.findByIdAndUpdate(request.params.product_id, request.body, { new: true })
+    Product.findByIdAndUpdate(request.params.product_id, request.body, { runValidators: true })
       .then(product => response.json(product))
       .catch(error => {
         response
