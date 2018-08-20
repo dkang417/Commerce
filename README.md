@@ -1,3 +1,9 @@
+Deployed at : 
+18.191.191.46
+
+
+
+
 # Commerce
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
